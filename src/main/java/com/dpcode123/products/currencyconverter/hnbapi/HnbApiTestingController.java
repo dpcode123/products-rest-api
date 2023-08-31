@@ -1,5 +1,6 @@
-package com.dpcode123.products.currencyconverter.hnbapi;
+package com.dpcode123.products.currency.converter.hnbapi;
 
+import com.dpcode123.products.currency.Currency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,8 @@ public class HnbApiTestingController {
     private final HnbApiService hnbApiService;
 
     @GetMapping(path = "/usd")
-    public ResponseEntity<BigDecimal> getUsdToEurExchangeRate() {
-        return ResponseEntity.ok(hnbApiService.getEurToUsdExchangeRate());
+    public ResponseEntity<BigDecimal> getExchangeRateEurToUsd() {
+        return ResponseEntity.ok(hnbApiService.getExchangeRateEurTo(Currency.USD));
     }
+
 }

@@ -1,5 +1,6 @@
-package com.dpcode123.products.currencyconverter.hnbapi;
+package com.dpcode123.products.currency.converter.hnbapi;
 
+import com.dpcode123.products.currency.Currency;
 import com.dpcode123.products.exception.exceptions.HnbApiRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -15,13 +16,13 @@ public class HnbApiRepository {
 
     private final WebClient.Builder webClientBuilder;
 
-    private static final String API_REQUEST_URI = "https://api.hnb.hr/tecajn-eur/v3?valuta=USD";
+    private static final String API_REQUEST_URI = "https://api.hnb.hr/tecajn-eur/v3?valuta=";
 
-    public BigDecimal getEurToUsdExchangeRate() {
+    public BigDecimal getExchangeRateEurTo(Currency currency) {
         List<ApiResponseObjectSingleCurrency> response = webClientBuilder
                 .build()
                 .get()
-                .uri(API_REQUEST_URI)
+                .uri(API_REQUEST_URI + currency)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<ApiResponseObjectSingleCurrency>>() {})
                 .block();
@@ -33,4 +34,5 @@ public class HnbApiRepository {
         return new BigDecimal(exchangeRate);
 
     }
+
 }

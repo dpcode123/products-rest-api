@@ -1,8 +1,10 @@
-package com.dpcode123.products.currencyconverter;
+package com.dpcode123.products.currency.converter;
+
+import com.dpcode123.products.currency.Currency;
 
 import java.math.BigDecimal;
 
 public interface CurrencyConverterService {
 
-    BigDecimal convertEurToUsd(BigDecimal priceEur);
+    BigDecimal convertEurTo(Currency currency, BigDecimal priceEur);
 }

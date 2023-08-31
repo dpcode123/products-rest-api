@@ -1,5 +1,6 @@
-package com.dpcode123.products.currencyconverter.hnbapi;
+package com.dpcode123.products.currency.converter.hnbapi;
 
+import com.dpcode123.products.currency.Currency;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,9 @@ public class HnbApiServiceImpl implements HnbApiService {
     private final HnbApiRepository hnbApiRepository;
 
     @Override
-    @Cacheable(cacheNames = "currencies", key = "'usd'")
-    public BigDecimal getEurToUsdExchangeRate() {
-        return hnbApiRepository.getEurToUsdExchangeRate();
+    @Cacheable(cacheNames = "currencies", key = "#currency")
+    public BigDecimal getExchangeRateEurTo(Currency currency) {
+        return hnbApiRepository.getExchangeRateEurTo(currency);
     }
 
 }

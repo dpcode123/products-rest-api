@@ -1,10 +1,10 @@
-package com.dpcode123.products.currencyconverter.hnbapi;
+package com.dpcode123.products.currency.converter.hnbapi;
 
-import org.springframework.http.ResponseEntity;
+import com.dpcode123.products.currency.Currency;
 
 import java.math.BigDecimal;
 
 public interface HnbApiService {
 
-    BigDecimal getEurToUsdExchangeRate();
+    BigDecimal getExchangeRateEurTo(Currency currency);
 }
