@@ -30,9 +30,4 @@ public class Product {
 
     @Column(name = "is_available")
     private Boolean is_available;
-
-    /**
-     * Price in USD, calculated by daily exchange rate. Not stored in DB.
-     */
-    private BigDecimal price_usd;
 }
