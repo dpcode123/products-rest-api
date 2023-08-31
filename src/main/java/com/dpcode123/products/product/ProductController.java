@@ -2,6 +2,7 @@ package com.dpcode123.products.product;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,18 @@ public class ProductController {
     @GetMapping(path = "/")
     public ResponseEntity<List<ProductDTO>> findAll() {
         return ResponseEntity.ok(productService.findAllProducts());
+    }
+
+    /**
+     * Gets paginated products.
+     * Default params endpoint: /api/product/paginated
+     * Custom params endpoint: /api/product/paginated?pageSize=10&pageNumber=2&sortDirection=ASC
+     * @param productsPage
+     * @return
+     */
+    @GetMapping(path = "/paginated")
+    public ResponseEntity<Page<ProductDTO>> findAllPaginated(ProductsPage productsPage) {
+        return ResponseEntity.ok(productService.findProductsPaginated(productsPage));
     }
 
     @GetMapping(path = "/{productId}")

@@ -6,6 +6,7 @@ import com.dpcode123.products.currency.converter.CurrencyConverterService;
 import com.dpcode123.products.exception.exceptions.NoContentFoundException;
 import com.dpcode123.products.exception.exceptions.TransactionFailedException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,13 @@ public class ProductServiceImpl implements ProductService {
                 .stream()
                 .map(this::mapProductToDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ProductDTO> findProductsPaginated(ProductsPage productsPage) {
+        return productRepository.findAll(productsPage.createPageable())
+                .map(this::mapProductToDTO);
     }
 
     @Override
