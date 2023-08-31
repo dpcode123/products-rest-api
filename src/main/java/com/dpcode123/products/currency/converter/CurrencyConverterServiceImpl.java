@@ -1,7 +1,7 @@
-package com.dpcode123.products.currencyconverter;
+package com.dpcode123.products.currency.converter;
 
 import com.dpcode123.products.currency.Currency;
-import com.dpcode123.products.currencyconverter.hnbapi.HnbApiService;
+import com.dpcode123.products.currency.converter.hnbapi.HnbApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

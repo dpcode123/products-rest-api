@@ -2,7 +2,7 @@ package com.dpcode123.products.product;
 
 import com.dpcode123.products.codegenerator.CodeGeneratorService;
 import com.dpcode123.products.currency.Currency;
-import com.dpcode123.products.currencyconverter.CurrencyConverterService;
+import com.dpcode123.products.currency.converter.CurrencyConverterService;
 import com.dpcode123.products.exception.exceptions.NoContentFoundException;
 import com.dpcode123.products.exception.exceptions.TransactionFailedException;
 import lombok.RequiredArgsConstructor;

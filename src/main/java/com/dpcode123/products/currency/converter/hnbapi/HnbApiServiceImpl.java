@@ -1,4 +1,4 @@
-package com.dpcode123.products.currencyconverter.hnbapi;
+package com.dpcode123.products.currency.converter.hnbapi;
 
 import com.dpcode123.products.currency.Currency;
 import lombok.RequiredArgsConstructor;
