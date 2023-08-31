@@ -1,4 +1,4 @@
-package com.dpcode123.products.currency.converter.hnbapi;
+package com.dpcode123.products.currencyconverter.hnbapi;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

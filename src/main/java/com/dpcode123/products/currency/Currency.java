@@ -1,2 +1,5 @@
-package com.dpcode123.products.currency.currencyconverter;public enum Currency {
+package com.dpcode123.products.currency;
+
+public enum Currency {
+    EUR, USD, GBP
 }

@@ -1,4 +1,4 @@
-package com.dpcode123.products.currency.converter;
+package com.dpcode123.products.currencyconverter;
 
 import com.dpcode123.products.currency.Currency;
 

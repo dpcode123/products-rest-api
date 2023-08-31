@@ -1,6 +1,7 @@
 package com.dpcode123.products.product;
 
 import com.dpcode123.products.codegenerator.CodeGeneratorService;
+import com.dpcode123.products.currency.Currency;
 import com.dpcode123.products.currencyconverter.CurrencyConverterService;
 import com.dpcode123.products.exception.exceptions.NoContentFoundException;
 import com.dpcode123.products.exception.exceptions.TransactionFailedException;
@@ -87,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private ProductDTO mapProductToDTO(Product product) {
-        BigDecimal priceUsd = currencyConverterService.convertEurToUsd(product.getPrice_eur());
+        BigDecimal priceUsd = currencyConverterService.convertEurTo(Currency.USD, product.getPrice_eur());
         return new ProductDTO(product.getId(), product.getCode(), product.getName(), product.getDescription(), product.getIs_available(), product.getPrice_eur(), priceUsd);
     }
 
