@@ -6,6 +6,7 @@ import com.dpcode123.products.currency.converter.CurrencyConverterService;
 import com.dpcode123.products.exception.exceptions.NoContentFoundException;
 import com.dpcode123.products.exception.exceptions.TransactionFailedException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
@@ -61,9 +63,12 @@ public class ProductServiceImpl implements ProductService {
         Product product = mapCommandToProduct(productRequest);
         product.setCode(codeGeneratorService.generateUniqueProductCode());
 
-        return Optional.of(productRepository.save(product))
+        ProductDTO addedProduct = Optional.of(productRepository.save(product))
                 .map(this::mapProductToDTO)
                 .orElseThrow(() -> new TransactionFailedException("Product not added."));
+
+        log.info("Product {} added", addedProduct.id());
+        return addedProduct;
     }
 
     @Override
@@ -76,9 +81,12 @@ public class ProductServiceImpl implements ProductService {
         product.setPrice_eur(productRequest.getPriceEur());
         product.setIs_available(productRequest.getIsAvailable());
 
-        return Optional.of(productRepository.save(product))
+        ProductDTO productDTO = Optional.of(productRepository.save(product))
                 .map(this::mapProductToDTO)
                 .orElseThrow(() -> new TransactionFailedException("Product edit failed, id: " + productId));
+
+        log.info("Product {} edited", productId);
+        return productDTO;
     }
 
     @Override
@@ -92,6 +100,8 @@ public class ProductServiceImpl implements ProductService {
         if (deletedProducts.equals(0L)) {
             throw new TransactionFailedException("Product not deleted, id: + " + productId);
         }
+
+        log.info("Product {} deleted", productId);
         return deletedProducts;
     }
 

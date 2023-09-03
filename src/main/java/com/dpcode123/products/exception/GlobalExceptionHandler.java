@@ -1,6 +1,7 @@
 package com.dpcode123.products.exception;
 
 import com.dpcode123.products.exception.exceptions.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @ControllerAdvice
 @RestController
+@Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NoContentFoundException.class)
@@ -59,6 +61,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<ApiException> createApiExceptionResponseEntity(Exception exception, WebRequest request, HttpStatus httpStatus) {
         ApiException apiException = new ApiException(new Date(), exception.getMessage(), request.getDescription(false));
+        log.warn("Exception: {} - {}", httpStatus.getReasonPhrase(), apiException);
         return new ResponseEntity<>(apiException, httpStatus);
     }
 
